@@ -24,7 +24,7 @@ $(document).ready(function () {
 		ctx.translate(0, 0.8);
 		ctx.beginPath();
 		ctx.moveTo(15, 45);
-		ctx.lineTo(815, 45);
+		ctx.lineTo(735, 45);
 		ctx.stroke();
 
 		// ]: Dibuja un rectangulo relleno
@@ -46,6 +46,65 @@ $(document).ready(function () {
 		ctx.closePath();
 		ctx.fill();
 
+		// |~> Lineas
+		// ]: Continuas
+		ctx.lineWidth = 15;
+		ctx.beginPath();
+		ctx.lineCap = "butt";
+		ctx.moveTo(180, 85);
+		ctx.lineTo(380, 85);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.lineCap = "round";
+		ctx.moveTo(180, 110);
+		ctx.lineTo(380, 110);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.lineCap = "square";
+		ctx.moveTo(180, 135);
+		ctx.lineTo(380, 135);
+		ctx.stroke();
+
+		// ]: Discontiuas
+		ctx.lineWidth = 4
+		ctx.setLineDash([4, 14]);
+		ctx.beginPath();
+		ctx.lineCap = "square";
+		ctx.moveTo(180, 185);
+		ctx.lineTo(380, 185);
+		ctx.stroke();
+
+		ctx.setLineDash([4, 14, 18]);
+		ctx.beginPath();
+		ctx.lineCap = "square";
+		ctx.moveTo(180, 205);
+		ctx.lineTo(380, 205);
+		ctx.stroke();
+
+		ctx.setLineDash([8, 14, 1, 16]);
+		ctx.beginPath();
+		ctx.lineCap = "square";
+		ctx.moveTo(180, 225);
+		ctx.lineTo(380, 225);
+		ctx.stroke();
+
+		// |~> Espiral
+		a = 1;
+		b = 4;
+
+		ctx.setLineDash([]);
+		ctx.beginPath();
+		ctx.moveTo(550, centerY);
+		for (var i = 0; i < 230; i++) {
+			angulo = 0.1 * i;
+			x = 550 + (a + b * angulo) * Math.cos(angulo);
+			y = centerY + (a + b * angulo) * Math.sin(angulo);
+
+			ctx.lineTo(x, y);
+		}
+		ctx.stroke();
 	})
 
 	// ]: Boton para limpiar el canvas
