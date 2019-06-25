@@ -1,14 +1,19 @@
 // (|:
+// |~> Variables globales
+var movimientos = new Array(); // ]: Guarda la posicion del raton
+var pulsado;				   // ]: Estado del boton del raton	
+
 $(document).ready(function () {
 
 	// ]: Obtiene el elemento canvas
 	var canvas = $("#skCanvas");
-	// ]: Contexto para renderizado en dos dimenciones
+	// ]: ctxo para renderizado en dos dimenciones
 	var ctx = canvas[0].getContext("2d");
 	// ]: Puntos medios
 	var centerX = canvas[0].width / 2;
 	var centerY = canvas[0].height / 2;
 
+<<<<<<< HEAD
 	// |~> Boton para dibujos basicos
 	$("#basic").on('click', function () {
 
@@ -54,58 +59,33 @@ $(document).ready(function () {
 		ctx.moveTo(180, 85);
 		ctx.lineTo(380, 85);
 		ctx.stroke();
+=======
+	// ]: Boton para dibujo basico
+	$("skCanvas").mousedown(function (e) {
+		pulsado = true;
+		movimientos.push([e.pageX - this.offsetLeft, e.pageY - this.offsetTop, flase]);
+		repinta(ctx);
+	});
 
-		ctx.beginPath();
-		ctx.lineCap = "round";
-		ctx.moveTo(180, 110);
-		ctx.lineTo(380, 110);
-		ctx.stroke();
+	$('#skCanvas').mousemove(function(e){
+          if(pulsado){
+              movimientos.push([e.pageX - this.offsetLeft,
+                  e.pageY - this.offsetTop,
+                  true]);
+            repinta(ctx);
+          }
+    });
+ 
+        $('#skCanvas').mouseup(function(e){
+          pulsado = false;
+        });
+ 
+        $('#skCanvas').mouseleave(function(e){
+          pulsado = false;
+        });
+        repinta(ctx);
+>>>>>>> 4af10a6f85fd93962bc8b135e03657cbf1290a3e
 
-		ctx.beginPath();
-		ctx.lineCap = "square";
-		ctx.moveTo(180, 135);
-		ctx.lineTo(380, 135);
-		ctx.stroke();
-
-		// ]: Discontiuas
-		ctx.lineWidth = 4
-		ctx.setLineDash([4, 14]);
-		ctx.beginPath();
-		ctx.lineCap = "square";
-		ctx.moveTo(180, 185);
-		ctx.lineTo(380, 185);
-		ctx.stroke();
-
-		ctx.setLineDash([4, 14, 18]);
-		ctx.beginPath();
-		ctx.lineCap = "square";
-		ctx.moveTo(180, 205);
-		ctx.lineTo(380, 205);
-		ctx.stroke();
-
-		ctx.setLineDash([8, 14, 1, 16]);
-		ctx.beginPath();
-		ctx.lineCap = "square";
-		ctx.moveTo(180, 225);
-		ctx.lineTo(380, 225);
-		ctx.stroke();
-
-		// |~> Espiral
-		a = 1;
-		b = 4;
-
-		ctx.setLineDash([]);
-		ctx.beginPath();
-		ctx.moveTo(550, centerY);
-		for (var i = 0; i < 230; i++) {
-			angulo = 0.1 * i;
-			x = 550 + (a + b * angulo) * Math.cos(angulo);
-			y = centerY + (a + b * angulo) * Math.sin(angulo);
-
-			ctx.lineTo(x, y);
-		}
-		ctx.stroke();
-	})
 
 	// |~> Boton para seleccionar color
 	$("#color").on('click', function () {
@@ -259,4 +239,25 @@ $(document).ready(function () {
 	})
 
 });
+
+function repinta(ctx) {
+	console.log('dentro de la funcion');
+	
+	ctx.strokeStyle = "#0000a0";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 6;
+ 
+  for(var i=0; i < movimientos.length; i++)
+  {     
+    ctx.beginPath();
+    if(movimientos[i][2] && i){
+      ctx.moveTo(movimientos[i-1][0], movimientos[i-1][1]);
+     }else{
+      ctx.moveTo(movimientos[i][0], movimientos[i][1]);
+     }
+     ctx.lineTo(movimientos[i][0], movimientos[i][1]);
+     ctx.closePath();
+     ctx.stroke();
+  }
+}
 // ]>~
