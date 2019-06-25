@@ -9,7 +9,7 @@ $(document).ready(function () {
 	var centerX = canvas[0].width / 2;
 	var centerY = canvas[0].height / 2;
 
-	// ]: Boton para dibujos basicos
+	// |~> Boton para dibujos basicos
 	$("#basic").on('click', function () {
 
 		// ]: Borra todo el contenido del canvas
@@ -107,7 +107,151 @@ $(document).ready(function () {
 		ctx.stroke();
 	})
 
-	// ]: Boton para limpiar el canvas
+	// |~> Boton para seleccionar color
+	$("#color").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Color Switching", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	}) 
+
+	// |~> Boton para seleccionar dibujo con pincel
+	$("#brush").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Brush Size", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	})
+
+	// |~> Boton para seleccionar color
+	$("#color").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Color Switching", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	})
+
+	// |~> Boton para seleccionar color
+	$("#color").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Color Switching", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	})
+
+	// |~> Boton para seleccionar color
+	$("#color").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Color Switching", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	})
+
+	// |~> Boton para seleccionar color
+	$("#color").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Color Switching", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	})
+
+	// |~> Boton para seleccionar color
+	$("#color").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Color Switching", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	})
+
+	// |~> Boton para seleccionar color
+	$("#color").on('click', function () {
+		// ]: Borra todo el contenido del canvas
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+
+		// ]: Dibuja el titulo en el canvas
+		ctx.textAlign = "center";
+		ctx.font = "30pt Verdana";
+		ctx.fillText("Color Switching", centerX, 35);
+
+		// ]: Dibuja linea debajo del titulo
+		ctx.translate(0, 0.8);
+		ctx.beginPath();
+		ctx.moveTo(15, 45);
+		ctx.lineTo(735, 45);
+		ctx.stroke();
+	})
+
+	// |~> Boton para limpiar el canvas
 	$("#clear").on('click', function () {
 
 		// ]: Borra todo el contenido del canvas
