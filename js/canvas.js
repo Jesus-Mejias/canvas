@@ -15,16 +15,18 @@ $(document).ready(function () {
 
 	$("#skCanvas").mousedown(function (e) {
 		pulsado = true;
-
+		canvas[0].width = canvas[0].width;
 		movimientos.push([e.pageX - this.offsetLeft, e.pageY - this.offsetTop, false]);
 		dibujar();
 	});
 
 	$('#skCanvas').mousemove(function(e){
+
         if(pulsado){
             movimientos.push([e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true]);
             dibujar();
         }
+
     });
  
     $('#skCanvas').mouseup(function(e){
@@ -35,7 +37,7 @@ $(document).ready(function () {
         pulsado = false;
     });
 
-    dibujar();
+    //dibujar();
 
     $("#clear").on('click', function () {
 
@@ -46,9 +48,9 @@ $(document).ready(function () {
 	function dibujar() {
 
 		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
-
+		
 		ctx.lineJoin = "round";
-		ctx.lineWidth = 2;
+		//ctx.lineWidth = 2;
 
 		for (var i = 0; i < movimientos.length; i++) {
 			ctx.beginPath();
