@@ -11,8 +11,9 @@ $(document).ready(function () {
 	var color = "#000000";
 	var size = 5;
 	// ]: Posicion del cursor
-	var x = 0;
-	var y = 0;
+	var posicion;
+
+	var trazo = 'pencil';
 
 	/* -------------------------------------------
 	*  |~> Acciones del raton
@@ -22,22 +23,54 @@ $(document).ready(function () {
 	// ]: Boton del raton pulsado
 	$("#skCanvas").mousedown(function (e) {
 		pulsado = true;
-		[x, y] = [e.offsetX, e.offsetY];
+		posicion = { x:e.offsetX, y:e.offsetY};
 	});
 
 	// ]: Movimiento del raton
 	$('#skCanvas').mousemove(function(e){
 
-		if (pulsado) {
+		if (!pulsado) return;
+
+		if (trazo == 'pencil') {
+
 			ctx.strokeStyle = color;
 			ctx.lineJoin = 'round';
 			ctx.lineCap = 'round';
 			ctx.lineWidth = size;
 			ctx.beginPath();
-			ctx.moveTo(x, y);
+			ctx.moveTo(posicion.x, posicion.y);
 			ctx.lineTo(e.offsetX, e.offsetY);
 			ctx.stroke();
-			[x, y] = [e.offsetX, e.offsetY];
+			posicion = { x:e.offsetX, y:e.offsetY};
+
+		}else if (trazo == 'brush') {
+
+			ctx.strokeStyle = color;
+			ctx.beginPath();
+  
+			ctx.globalAlpha = 1;
+			ctx.moveTo(posicion.x, posicion.y);
+			ctx.lineTo(e.offsetX, e.offsetY);
+			ctx.stroke();
+			  
+			ctx.moveTo(posicion.x - 4, posicion.y - 4);
+			ctx.lineTo(e.offsetX - 4, e.offsetY - 4);
+			ctx.stroke();
+			  
+			ctx.moveTo(posicion.x - 2, posicion.y - 2);
+			ctx.lineTo(e.offsetX - 2, e.offsetY - 2);
+			ctx.stroke();
+			  
+			ctx.moveTo(posicion.x + 2, posicion.y + 2);
+			ctx.lineTo(e.offsetX + 2, e.offsetY + 2);
+			ctx.stroke();
+			  
+			ctx.moveTo(posicion.x + 4, posicion.y + 4);
+			ctx.lineTo(e.offsetX + 4, e.offsetY + 4);
+			ctx.stroke();
+			    
+			posicion = { x: e.offsetX, y: e.offsetY };
+
 		}
     });
  	
@@ -69,11 +102,14 @@ $(document).ready(function () {
 		color = $("#color").val();
 		$("#color").prop('disabled', false);
 		size = 5;
+		trazo = 'pencil';
 	});
 
 	// ]: Boton con funcion de brocha
 	$("#brush").on('click', function () {
-
+		color = $("#color").val();
+		$("#color").prop('disabled', false);
+		trazo = 'brush';
 	});
 
 	// ]: Boton con funcion de dibujar rectangulo
