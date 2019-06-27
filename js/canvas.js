@@ -91,7 +91,8 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de borrador
 	$("#rubber").on('click', function () {
-
+		color = "#ffffff";
+		size = 20;
 	});
 
 	// ]: Boton con funcion de efecto espejo
