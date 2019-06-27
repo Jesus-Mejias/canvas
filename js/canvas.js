@@ -62,7 +62,52 @@ $(document).ready(function () {
 
 		// ]: Borra todo el contenido del canvas
 		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
-	});	
+	});
+
+	// ]: Boton con funcion de lapiz
+	$("#pencil").on('click', function () {
+
+	});
+
+	// ]: Boton con funcion de brocha
+	$("#brush").on('click', function () {
+
+	});
+
+	// ]: Boton con funcion de dibujar rectangulo
+	$("#rectangle").on('click', function () {
+
+	});
+
+	// ]: Boton con funcion de dibujar circulo
+	$("#circle").on('click', function () {
+
+	});
+
+	// ]: Boton con funcion de cambiar color
+	$("#color").on('change', function () {
+
+	});
+
+	// ]: Boton con funcion de borrador
+	$("#rubber").on('click', function () {
+
+	});
+
+	// ]: Boton con funcion de efecto espejo
+	$("#mirror").on('click', function () {
+
+	});
+
+	// ]: Boton con funcion de arcoiris
+	$("#rainbow").on('click', function () {
+
+	});
+
+	// ]: Boton con funcion de cargar imagen
+	$("#image").on('click', function () {
+
+	});
 
 });
 
