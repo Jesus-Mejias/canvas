@@ -12,7 +12,7 @@ $(document).ready(function () {
 	var size = 5;
 	// ]: Posicion del cursor
 	var posicion;
-
+	// ]: Tipo de trazo
 	var trazo = 'pencil';
 
 	/* -------------------------------------------
