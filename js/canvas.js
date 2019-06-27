@@ -11,8 +11,7 @@ $(document).ready(function () {
 	var color = "#000000";
 	var size = 5;
 	// ]: Posicion del cursor
-	var x = 0;
-	var y = 0;
+	var posicion;
 
 	/* -------------------------------------------
 	*  |~> Acciones del raton
@@ -22,7 +21,7 @@ $(document).ready(function () {
 	// ]: Boton del raton pulsado
 	$("#skCanvas").mousedown(function (e) {
 		pulsado = true;
-		[x, y] = [e.offsetX, e.offsetY];
+		posicion = {x: e.offsetX, y: e.offsetY};
 	});
 
 	// ]: Movimiento del raton
@@ -34,10 +33,10 @@ $(document).ready(function () {
 			ctx.lineCap = 'round';
 			ctx.lineWidth = size;
 			ctx.beginPath();
-			ctx.moveTo(x, y);
+			ctx.moveTo(posicion.x, posicion.y);
 			ctx.lineTo(e.offsetX, e.offsetY);
 			ctx.stroke();
-			[x, y] = [e.offsetX, e.offsetY];
+			posicion = {x: e.offsetX, y: e.offsetY};
 		}
     });
  	
