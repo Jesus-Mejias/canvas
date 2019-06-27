@@ -66,7 +66,9 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de lapiz
 	$("#pencil").on('click', function () {
-
+		color = $("#color").val();
+		$("#color").prop('disabled', false);
+		size = 5;
 	});
 
 	// ]: Boton con funcion de brocha
@@ -86,13 +88,15 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de cambiar color
 	$("#color").on('change', function () {
-
+		color = $("#color").val();
 	});
 
 	// ]: Boton con funcion de borrador
 	$("#rubber").on('click', function () {
 		color = "#ffffff";
+		$("#color").prop('disabled', true);
 		size = 20;
+		
 	});
 
 	// ]: Boton con funcion de efecto espejo
