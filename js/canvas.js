@@ -56,19 +56,19 @@ $(document).ready(function () {
 			ctx.moveTo(posicion.x - 4, posicion.y - 4);
 			ctx.lineTo(e.offsetX - 4, e.offsetY - 4);
 			ctx.stroke();
-			  
+			
 			ctx.moveTo(posicion.x - 2, posicion.y - 2);
 			ctx.lineTo(e.offsetX - 2, e.offsetY - 2);
 			ctx.stroke();
-			  
+			
 			ctx.moveTo(posicion.x + 2, posicion.y + 2);
 			ctx.lineTo(e.offsetX + 2, e.offsetY + 2);
 			ctx.stroke();
-			  
+			
 			ctx.moveTo(posicion.x + 4, posicion.y + 4);
 			ctx.lineTo(e.offsetX + 4, e.offsetY + 4);
 			ctx.stroke();
-			    
+			
 			posicion = { x: e.offsetX, y: e.offsetY };
 
 		}
@@ -131,8 +131,7 @@ $(document).ready(function () {
 	$("#rubber").on('click', function () {
 		color = "#ffffff";
 		$("#color").prop('disabled', true);
-		size = 20;
-		
+		size = 20;	
 	});
 
 	// ]: Boton con funcion de efecto espejo
