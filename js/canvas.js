@@ -24,6 +24,10 @@ $(document).ready(function () {
 	$("#skCanvas").mousedown(function (e) {
 		pulsado = true;
 		posicion = { x:e.offsetX, y:e.offsetY};
+
+		if (trazo == 'rectangle'){
+			canvas[0].style.cursor = 'crosshair';
+		}
 	});
 
 	// ]: Movimiento del raton
@@ -32,6 +36,8 @@ $(document).ready(function () {
 		if (!pulsado) return;
 
 		if (trazo == 'pencil') {
+
+			canvas[0].style.cursor = 'default';
 
 			ctx.strokeStyle = color;
 			ctx.lineJoin = 'round';
@@ -44,6 +50,8 @@ $(document).ready(function () {
 			posicion = { x:e.offsetX, y:e.offsetY};
 
 		}else if (trazo == 'brush') {
+
+			canvas[0].style.cursor = 'default';
 
 			ctx.strokeStyle = color;
 			ctx.beginPath();
@@ -77,6 +85,32 @@ $(document).ready(function () {
  	// ]: Boton del raton sin pulsar
     $('#skCanvas').mouseup(function(e){
         pulsado = false;
+
+        if (trazo == 'rectangle'){
+
+        	ctx.strokeStyle = color;
+        	ctx.lineWidth = size;
+			ctx.beginPath();
+
+			ctx.rect(posicion.x, posicion.y, e.offsetX - posicion.x, e.offsetY - posicion.y);
+			ctx.fill();
+
+			canvas[0].style.cursor = 'default';
+			posicion = { x: e.offsetX, y: e.offsetY };
+
+		}else if (trazo == 'rectangleo'){
+
+        	ctx.strokeStyle = color;
+        	ctx.lineWidth = size;
+			ctx.beginPath();
+
+			ctx.rect(posicion.x, posicion.y, e.offsetX - posicion.x, e.offsetY - posicion.y);
+			ctx.stroke();
+
+			canvas[0].style.cursor = 'default';
+			posicion = { x: e.offsetX, y: e.offsetY };
+
+		}
     });
  	
  	// ]: Raton fuera del canvas
@@ -114,7 +148,15 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de dibujar rectangulo
 	$("#rectangle").on('click', function () {
+		color = $("#color").val();
+		$("#color").prop('disabled', false);
+		trazo = 'rectangle';
+	});
 
+	$("#rectangleo").on('click', function () {
+		color = $("#color").val();
+		$("#color").prop('disabled', false);
+		trazo = 'rectangleo';
 	});
 
 	// ]: Boton con funcion de dibujar circulo
