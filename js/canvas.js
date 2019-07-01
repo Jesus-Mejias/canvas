@@ -24,6 +24,7 @@ $(document).ready(function () {
 	$("#skCanvas").mousedown(function (e) {
 		pulsado = true;
 		posicion = { x:e.offsetX, y:e.offsetY};
+		ctx.beginPath();
 
 		if (trazo == 'rectangle'){
 			canvas[0].style.cursor = 'crosshair';
@@ -43,7 +44,7 @@ $(document).ready(function () {
 			ctx.lineJoin = 'round';
 			ctx.lineCap = 'round';
 			ctx.lineWidth = size;
-			ctx.beginPath();
+			
 			ctx.moveTo(posicion.x, posicion.y);
 			ctx.lineTo(e.offsetX, e.offsetY);
 			ctx.stroke();
@@ -54,8 +55,7 @@ $(document).ready(function () {
 			canvas[0].style.cursor = 'default';
 
 			ctx.strokeStyle = color;
-			ctx.beginPath();
-  
+			
 			ctx.globalAlpha = 1;
 			ctx.moveTo(posicion.x, posicion.y);
 			ctx.lineTo(e.offsetX, e.offsetY);
@@ -79,38 +79,47 @@ $(document).ready(function () {
 			
 			posicion = { x: e.offsetX, y: e.offsetY };
 
-		}
-    });
- 	
- 	// ]: Boton del raton sin pulsar
-    $('#skCanvas').mouseup(function(e){
-        pulsado = false;
-
-        if (trazo == 'rectangle'){
+		}else if (trazo == 'rectangle'){
 
         	ctx.strokeStyle = color;
         	ctx.lineWidth = size;
-			ctx.beginPath();
 
 			ctx.rect(posicion.x, posicion.y, e.offsetX - posicion.x, e.offsetY - posicion.y);
 			ctx.fill();
 
 			canvas[0].style.cursor = 'default';
-			posicion = { x: e.offsetX, y: e.offsetY };
+
+		}
+    });
+ 	
+ 	// ]: Boton del raton sin pulsar
+    $('#skCanvas').mouseup(function(e){
+        
+        if (trazo == 'rectangle'){
+
+        	ctx.strokeStyle = color;
+        	ctx.lineWidth = size;
+			
+			ctx.rect(posicion.x, posicion.y, e.offsetX - posicion.x, e.offsetY - posicion.y);
+			ctx.fill();
+
+			canvas[0].style.cursor = 'default';
+			
 
 		}else if (trazo == 'rectangleo'){
 
         	ctx.strokeStyle = color;
         	ctx.lineWidth = size;
-			ctx.beginPath();
 
 			ctx.rect(posicion.x, posicion.y, e.offsetX - posicion.x, e.offsetY - posicion.y);
 			ctx.stroke();
 
 			canvas[0].style.cursor = 'default';
-			posicion = { x: e.offsetX, y: e.offsetY };
 
 		}
+
+		ctx.closePath();
+		pulsado = false;
     });
  	
  	// ]: Raton fuera del canvas
