@@ -14,6 +14,8 @@ $(document).ready(function () {
 	var posicion;
 	// ]: Tipo de trazo
 	var trazo = 'pencil';
+	// Tono para espacio de colores
+	var tono = 0;
 
 	/* -------------------------------------------
 	*  |~> Acciones del raton
@@ -89,6 +91,25 @@ $(document).ready(function () {
 
 			canvas[0].style.cursor = 'default';
 
+		}else if (trazo == 'rainbow'){
+			canvas[0].style.cursor = 'default';
+
+			ctx.strokeStyle = `hsl(${tono}, 100%, 50%)`;
+			ctx.lineJoin = 'round';
+			ctx.lineCap = 'round';
+			ctx.lineWidth = size;
+			
+			ctx.moveTo(posicion.x, posicion.y);
+			ctx.lineTo(e.offsetX, e.offsetY);
+			ctx.stroke();
+			
+			posicion = { x:e.offsetX, y:e.offsetY};
+
+			tono++;
+
+			if (tono >= 360) {
+        		tono = 0;
+    		}
 		}
     });
  	
@@ -97,8 +118,7 @@ $(document).ready(function () {
         
         if (trazo == 'rectangle'){
 
-        	ctx.strokeStyle = color;
-        	ctx.lineWidth = size;
+        	ctx.fillStyle = color;
 			
 			ctx.rect(posicion.x, posicion.y, e.offsetX - posicion.x, e.offsetY - posicion.y);
 			ctx.fill();
@@ -116,6 +136,18 @@ $(document).ready(function () {
 
 			canvas[0].style.cursor = 'default';
 
+		}else if (trazo == 'circle') {
+
+			x = posicion.x + (e.offsetX - posicion.x) / 2;
+			y = posicion.y + (e.offsetY - posicion.y) / 2;
+			radio = (Math.sqrt((e.offsetX - posicion.x)*(e.offsetX - posicion.x) +
+				(e.offsetY - posicion.y)*(e.offsetY - posicion.y))) / 2;
+
+			ctx.fillStyle = color;
+      		ctx.arc(x, y, radio, Math.PI*2, true);
+      		ctx.fill();
+
+      		canvas[0].style.cursor = 'default';
 		}
 
 		ctx.closePath();
@@ -170,7 +202,9 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de dibujar circulo
 	$("#circle").on('click', function () {
-
+		color = $("#color").val();
+		$("#color").prop('disabled', false);
+		trazo = 'circle';
 	});
 
 	// ]: Boton con funcion de cambiar color
@@ -192,7 +226,9 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de arcoiris
 	$("#rainbow").on('click', function () {
-
+		$("#color").prop('disabled', true);
+		size = 20;
+		trazo = 'rainbow';
 	});
 
 	// ]: Boton con funcion de cargar imagen
