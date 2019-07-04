@@ -40,6 +40,7 @@ $(document).ready(function () {
 
 		if (trazo == 'pencil') {
 
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			canvas[0].style.cursor = 'default';
 
 			ctx.strokeStyle = color;
@@ -54,6 +55,7 @@ $(document).ready(function () {
 
 		}else if (trazo == 'brush') {
 
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			canvas[0].style.cursor = 'default';
 
 			ctx.strokeStyle = color;
@@ -83,6 +85,7 @@ $(document).ready(function () {
 
 		}else if (trazo == 'rectangle'){
 
+        	ctx.setTransform(1, 0, 0, 1, 0, 0);
         	ctx.strokeStyle = color;
         	ctx.lineWidth = size;
 
@@ -92,6 +95,8 @@ $(document).ready(function () {
 			canvas[0].style.cursor = 'default';
 
 		}else if (trazo == 'rainbow'){
+			
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
 			canvas[0].style.cursor = 'default';
 
 			ctx.strokeStyle = `hsl(${tono}, 100%, 50%)`;
@@ -118,6 +123,7 @@ $(document).ready(function () {
         
         if (trazo == 'rectangle'){
 
+        	ctx.setTransform(1, 0, 0, 1, 0, 0);
         	ctx.fillStyle = color;
 			
 			ctx.rect(posicion.x, posicion.y, e.offsetX - posicion.x, e.offsetY - posicion.y);
@@ -128,6 +134,7 @@ $(document).ready(function () {
 
 		}else if (trazo == 'rectangleo'){
 
+        	ctx.setTransform(1, 0, 0, 1, 0, 0);
         	ctx.strokeStyle = color;
         	ctx.lineWidth = size;
 
@@ -170,6 +177,7 @@ $(document).ready(function () {
 
 		// ]: Borra todo el contenido del canvas
 		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+		ctx.clearRect(-90, 0, canvas[0].width, canvas[0].height);
 	});
 
 	// ]: Boton con funcion de lapiz
@@ -221,7 +229,22 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de efecto espejo
 	$("#mirror").on('click', function () {
+		
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+		ctx.clearRect(-90, 0, canvas[0].width, canvas[0].height);
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		var image = new Image();
+		image.src = "media/img.jpg";
 
+		image.onload = function () {
+			ctx.drawImage(this, 90, 80, 300, 150);
+			ctx.translate(2 * canvas[0].height, 0);
+			ctx.scale(-1, 1);
+			ctx.drawImage(this, -90, 80, 300, 150);
+		}
+
+		$("#color").prop('disabled', true);
+		trazo = 'mirror';
 	});
 
 	// ]: Boton con funcion de arcoiris
@@ -233,7 +256,20 @@ $(document).ready(function () {
 
 	// ]: Boton con funcion de cargar imagen
 	$("#image").on('click', function () {
+		
+		ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+		ctx.clearRect(-90, 0, canvas[0].width, canvas[0].height);
+		var image = new Image();
+		image.src = "media/img.jpg";
 
+		image.onload = function () {
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+			ctx.scale(1, 1);
+			ctx.drawImage(this, 90, 80, 300, 150); 
+		}
+
+		$("#color").prop('disabled', true);
+		trazo = 'image';
 	});
 
 });
